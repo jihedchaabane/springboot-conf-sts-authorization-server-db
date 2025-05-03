@@ -1,0 +1,47 @@
+IN 10.0.0.137 do:
+------------------------------------------------------------
+sudo -u postgres psql
+------------------------------------------------------------
+CREATE USER postgres_data_source WITH PASSWORD 'postgres_data_source';
+CREATE DATABASE postgres_data_source OWNER postgres_data_source;
+GRANT ALL PRIVILEGES ON DATABASE postgres_data_source TO postgres_data_source;
+\q
+------------------------------------------------------------
+sudo vim /var/lib/pgsql/data/pg_hba.conf
+
+host postgres_data_source postgres_data_source 10.0.0.1/32 md5
+host postgres_data_source postgres_data_source 10.0.0.129/32 md5
+------------------------------------------------------------
+sudo vim /var/lib/pgsql/data/postgresql.conf 
+
+listen_addresses = '*'
+------------------------------------------------------------
+sudo -u postgres psql -d postgres_data_source
+------------------------------------------------------------
+\dt
+\dp sts_oauth2_clients
+GRANT ALL ON TABLE sts_oauth2_clients TO postgres_data_source;
+------------------------------------------------------------
+INSERT INTO sts_oauth2_clients (client_id, client_secret, scopes, grant_types)
+VALUES ('products-client', 'secret', 'products.read products.write', 'client_credentials');
+------------------------------------------------------------
+
+sudo systemctl restart postgresql
+sudo systemctl status postgresql
+------------------------------------------------------------
+sudo firewall-cmd --add-port=5432/tcp --permanent
+sudo firewall-cmd –-reload
+------------------------------------------------------------------------------------------------------------------------
+IN 10.0.0.137 do:
+sudo firewall-cmd --add-port=2501/tcp --permanent
+sudo firewall-cmd –-reload
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+
+GRANT USAGE ON SCHEMA myapp TO postgres_data_source;
+GRANT ALL ON TABLE myapp.employee TO postgres_data_source;
+
+ALTER TABLE employee OWNER TO postgres_data_source;
+
+GRANT ALL ON SEQUENCE nom_de_la_sequence TO postgres_data_source;
