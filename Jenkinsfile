@@ -130,7 +130,7 @@ pipeline {
                     sh """
                         docker run -e EUREKA_ADDR=${EUREKA_URL} \
                         	-d --name ${CONTAINER_NAME} --network ${DOCKER_NETWORK} \
-                        	-e SPRING_PROFILES_ACTIV=${ACTIVE_PROFILE} \
+                        	-e SPRING_PROFILES_ACTIVE=${ACTIVE_PROFILE} \
                         	-e EUREKA_ADDR=${EUREKA_URL} \
                         	-e CONFIG_SERVER_ADDR=${CONFIG_SERVER_ADDR} \
                         	-p ${APP_PORT}:${APP_PORT} ${DOCKER_IMAGE}
