@@ -9,7 +9,7 @@ pipeline {
         // Nom du conteneur
         CONTAINER_NAME = 'container-springboot-conf-sts-authorization-server-db'
         // Port de l'application
-        APP_PORT = '8763'
+        APP_PORT = '8764'
         // common-network
         DOCKER_NETWORK = 'springboot-network'
         
