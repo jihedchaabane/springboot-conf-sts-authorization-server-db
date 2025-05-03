@@ -14,3 +14,9 @@ sudo firewall-cmd --reload
 
 sudo firewall-cmd --list-ports
 sudo firewall-cmd --list-all
+
+-----------------------------------------------------
+
+curl -vvv http://10.0.0.137:8764
+curl http://10.0.0.137:8764/actuator/health
+-----------------------------------------------------
