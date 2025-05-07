@@ -22,8 +22,15 @@ sudo -u postgres psql -d postgres_data_source
 \dp sts_oauth2_clients
 GRANT ALL ON TABLE sts_oauth2_clients TO postgres_data_source;
 ------------------------------------------------------------
+# sts-spring-boot-resource-server
 INSERT INTO sts_oauth2_clients (client_id, client_secret, scopes, grant_types)
 VALUES ('products-client', 'secret', 'products.read products.write', 'client_credentials');
+# springboot-oauth2-client1
+INSERT INTO sts_oauth2_clients (client_id, client_secret, scopes, grant_types)
+VALUES ('client1', 'secret1', 'read write', 'client_credentials');
+# springboot-oauth2-client2
+INSERT INTO sts_oauth2_clients (client_id, client_secret, scopes, grant_types)
+VALUES ('client2', 'secret2', 'read', 'client_credentials');
 ------------------------------------------------------------
 
 sudo systemctl restart postgresql
