@@ -3,7 +3,6 @@ package com.chj.gr.service;
 import java.util.Arrays;
 import java.util.Optional;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
@@ -17,11 +16,9 @@ import com.chj.gr.repository.ClientRepository;
 public class CustomClientService implements RegisteredClientRepository {
 
     private final ClientRepository clientRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public CustomClientService(ClientRepository clientRepository, PasswordEncoder passwordEncoder) {
+    public CustomClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -40,7 +37,7 @@ public class CustomClientService implements RegisteredClientRepository {
     private RegisteredClient mapToRegisteredClient(Client client) {
         return RegisteredClient.withId(client.getId().toString())
                 .clientId(client.getClientId())
-                .clientSecret(passwordEncoder.encode(client.getClientSecret()))
+                .clientSecret(client.getClientSecret())
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantTypes(grants -> 
                     Arrays.stream(client.getGrantTypes().split(" "))
