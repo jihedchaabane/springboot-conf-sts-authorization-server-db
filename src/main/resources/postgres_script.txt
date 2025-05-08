@@ -23,26 +23,15 @@ sudo -u postgres psql -d postgres_data_source
 GRANT ALL ON TABLE sts_oauth2_clients TO postgres_data_source;
 ------------------------------------------------------------
 # sts-spring-boot-resource-server
-INSERT INTO sts_oauth2_clients (client_id, client_secret, scopes, grant_types)
-	VALUES ('products-client', 'secret', 'products.read products.write', 'client_credentials');
+'products-client:secret', 		'products.read products.write'
+
 # springboot-oauth2-client1
-INSERT INTO sts_oauth2_clients (client_id, client_secret, scopes, grant_types)
-	VALUES ('client1', 'secret1', 'read write', 'client_credentials');
+'client1:secret1', 				'read write'
+
 # springboot-oauth2-client2
-INSERT INTO sts_oauth2_clients (client_id, client_secret, scopes, grant_types)
-	VALUES ('client2', 'secret2', 'read', 'client_credentials');
-	
-UPDATE sts_oauth2_clients SET client_secret = '$2a$10$9jqiljibjNsTOLHadkmbJupbJ54lnSQ0UvZcsvmkMcLbgoon0F7de' WHERE client_id = 'products-client';
-UPDATE sts_oauth2_clients SET client_secret = '$2a$10$7kPsZCgc5FnK.CZFiugblO8eqOHll1WZymm9PHY4D6fMGarvnd5fC' WHERE client_id = 'client1';
-UPDATE sts_oauth2_clients SET client_secret = '$2a$10$w4GclNTUKApSCDnrgxkibunO2oSiq9VLyv3z8XHdl263Mdc5Wfkjq' WHERE client_id = 'client2';
-----------------------
-BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-System.out.println("" + encoder.encode("secret"));
-System.out.println("" + encoder.encode("secret1"));
-System.out.println("" + encoder.encode("secret2"));
-$2a$10$9jqiljibjNsTOLHadkmbJupbJ54lnSQ0UvZcsvmkMcLbgoon0F7de
-$2a$10$7kPsZCgc5FnK.CZFiugblO8eqOHll1WZymm9PHY4D6fMGarvnd5fC
-$2a$10$w4GclNTUKApSCDnrgxkibunO2oSiq9VLyv3z8XHdl263Mdc5Wfkjq
+'client2:secret2',				 'read'
+----------
+VOIR :: ==> EncryptPasswordsMain.java
 ------------------------------------------------------------
 
 sudo systemctl restart postgresql
@@ -56,7 +45,6 @@ sudo firewall-cmd --add-port=2501/tcp --permanent
 sudo firewall-cmd –-reload
 ------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------
-
 
 GRANT USAGE ON SCHEMA myapp TO postgres_data_source;
 GRANT ALL ON TABLE myapp.employee TO postgres_data_source;
