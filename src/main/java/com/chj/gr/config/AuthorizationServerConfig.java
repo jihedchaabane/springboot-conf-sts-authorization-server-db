@@ -68,9 +68,14 @@ public class AuthorizationServerConfig {
     @Bean
     public ProviderSettings providerSettings() {
         return ProviderSettings.builder()
+              /**
+        		.issuer("http://localhost:9000")
+        		@TODO try to replace it with eureka discovery alternative.	
+				.issuer("http://STS-SPRING-BOOT-AUTHORIZATION-SERVER")
+               */
         		.issuer(issuerUrl)
-//                .issuer("http://localhost:9000") 	// try to replace it with eureka discovery alternative.
-                									// .issuer("http://STS-SPRING-BOOT-AUTHORIZATION-SERVER")
+        		.tokenEndpoint("/oauth2/token")
+
                 .build();
     }
 }
