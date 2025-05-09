@@ -33,7 +33,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfig {
-	@Value("${params.oauth2.issuerUri:Config Server is not working. Please check...}")
+	@Value("${params.oauth2.issuerUri}")
 	private String issuerUrl;
 
 	@Autowired
