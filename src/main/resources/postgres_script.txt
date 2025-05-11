@@ -25,17 +25,8 @@ sudo -u postgres psql -d postgres_data_source
 GRANT ALL ON TABLE sts_oauth2_clients 		TO postgres_data_source;
 GRANT ALL ON TABLE oauth2_registered_client TO postgres_data_source;
 ------------------------------------------------------------
-# sts-spring-boot-resource-server
-'products-client:secret', 		'products.read,products.write'
-
-# springboot-oauth2-client1
-'client1:secret1', 				'client1.read,client1.write'
-
-# springboot-oauth2-client2
-'client2:secret2',				 'client2.read,client2.write'
-----------
 VOIR :: ==> EncryptPasswordsMain.java
-
+----------
 select 
 id,
 client_id,
