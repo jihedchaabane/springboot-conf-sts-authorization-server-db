@@ -6,8 +6,8 @@ public class EncryptPasswordsMain {
  id |    client_id    |                        client_secret                         |    grant_types     |            scopes            
 ----+-----------------+--------------------------------------------------------------+--------------------+------------------------------
   1 | products-client | $2a$10$9jqiljibjNsTOLHadkmbJupbJ54lnSQ0UvZcsvmkMcLbgoon0F7de | client_credentials | products.read,products.write
-  2 | client1         | $2a$10$7kPsZCgc5FnK.CZFiugblO8eqOHll1WZymm9PHY4D6fMGarvnd5fC | client_credentials | read,write
-  3 | client2         | $2a$10$w4GclNTUKApSCDnrgxkibunO2oSiq9VLyv3z8XHdl263Mdc5Wfkjq | client_credentials | read
+  2 | client1         | $2a$10$7kPsZCgc5FnK.CZFiugblO8eqOHll1WZymm9PHY4D6fMGarvnd5fC | client_credentials | client1.read,client1.write
+  3 | client2         | $2a$10$w4GclNTUKApSCDnrgxkibunO2oSiq9VLyv3z8XHdl263Mdc5Wfkjq | client_credentials | client2.read,client2.write
 ----+-----------------+--------------------------------------------------------------+--------------------+------------------------------
 	public static void main(String[] args) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -85,7 +85,7 @@ INSERT INTO oauth2_registered_client (
     'client1-name',
     'client_secret_basic',
     'client_credentials',
-    'read,write',
+    'client1.read,client1.write',
     '{"@class":"java.util.Collections$UnmodifiableMap","settings.client.require-proof-key":false,"settings.client.require-authorization-consent":false}',
     '{"@class":"java.util.Collections$UnmodifiableMap","settings.token.reuse-refresh-tokens":true,"settings.token.id-token-signature-algorithm":"RS256","settings.token.access-token-time-to-live":"PT30M","settings.token.access-token-format":"self-contained","settings.token.refresh-token-time-to-live":"PT1H"}'
 );
@@ -106,10 +106,10 @@ INSERT INTO oauth2_registered_client (
     'client2',
     CURRENT_TIMESTAMP,
     '$2a$10$w4GclNTUKApSCDnrgxkibunO2oSiq9VLyv3z8XHdl263Mdc5Wfkjq', -- BCrypt pour "secret2"
-    'products-client-name',
+    'client2-name',
     'client_secret_basic',
     'client_credentials',
-    'read',
+    'client2.read,client2.write',
     '{"@class":"java.util.Collections$UnmodifiableMap","settings.client.require-proof-key":false,"settings.client.require-authorization-consent":false}',
     '{"@class":"java.util.Collections$UnmodifiableMap","settings.token.reuse-refresh-tokens":true,"settings.token.id-token-signature-algorithm":"RS256","settings.token.access-token-time-to-live":"PT30M","settings.token.access-token-format":"self-contained","settings.token.refresh-token-time-to-live":"PT1H"}'
 );

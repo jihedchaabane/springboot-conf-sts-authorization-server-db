@@ -1,6 +1,8 @@
 
 ## GET token en fournissant :
-curl -X POST http://localhost:8764/oauth2/token -d "grant_type=client_credentials&scope=read write" -u client1:secret1 -H "Content-Type: application/x-www-form-urlencoded"
+curl -X POST http://localhost:8764/oauth2/token -d "grant_type=client_credentials&scope=client1.read client1.write"   -u client1:secret1 		-H "Content-Type: application/x-www-form-urlencoded"
+curl -X POST http://localhost:8764/oauth2/token -d "grant_type=client_credentials&scope=client2.read client2.write"   -u client2:secret2 		-H "Content-Type: application/x-www-form-urlencoded"
+curl -X POST http://localhost:8764/oauth2/token -d "grant_type=client_credentials&scope=products.read products.write" -u products-client:secret -H "Content-Type: application/x-www-form-urlencoded"
 
 ## Test /hello endpoint:
 curl -X GET http://localhost:8764/api/hello -H "Authorization: Bearer YOUR_GENERATED_TOKEN"
