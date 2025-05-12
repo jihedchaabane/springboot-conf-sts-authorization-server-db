@@ -128,12 +128,13 @@ pipeline {
                 script {
                     // Lancer le conteneur
                     sh """
-                        docker run -e EUREKA_ADDR=${EUREKA_URL} \
-                        	-d --name ${CONTAINER_NAME} --network ${DOCKER_NETWORK} \
+                        docker run \
                         	-e SPRING_PROFILES_ACTIVE=${ACTIVE_PROFILE} \
                         	-e EUREKA_ADDR=${EUREKA_URL} \
                         	-e CONFIG_SERVER_ADDR=${CONFIG_SERVER_ADDR} \
-                        	-p ${APP_PORT}:${APP_PORT} ${DOCKER_IMAGE}
+                        	-d --name ${CONTAINER_NAME} --network ${DOCKER_NETWORK} \
+                        	-p ${APP_PORT}:${APP_PORT} \
+                        	${DOCKER_IMAGE}
                     """
                 }
             }
