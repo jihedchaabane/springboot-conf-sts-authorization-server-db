@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -26,6 +25,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.chj.gr.properties.ServiceParamsProperties;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
@@ -33,8 +33,6 @@ import com.nimbusds.jose.proc.SecurityContext;
 
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfig {
-	@Value("${params.oauth2.issuerUri}")
-	private String issuerUrl;
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -143,17 +141,19 @@ public class AuthorizationServerConfig {
         return keyPair;
     }
 
+	@Autowired
+	private ServiceParamsProperties serviceParamsProperties;
+    
     @Bean
     public ProviderSettings providerSettings() {
         return ProviderSettings.builder()
               /**
-        		.issuer("http://localhost:9000")
+        		.issuer("http://localhost:8764")
         		@TODO try to replace it with eureka discovery alternative.	
-				.issuer("http://STS-SPRING-BOOT-AUTHORIZATION-SERVER")
+				.issuer("http://SPRINGBOOT-CONF-STS-AUTHORIZATION-SERVER-DB")
                */
-        		.issuer(issuerUrl)
+        		.issuer(this.serviceParamsProperties.getOauth2().getIssuerUri())
         		.tokenEndpoint("/oauth2/token")
-
                 .build();
     }
 }
