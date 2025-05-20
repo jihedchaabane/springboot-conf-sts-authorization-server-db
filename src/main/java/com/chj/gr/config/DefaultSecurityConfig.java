@@ -9,7 +9,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 @EnableWebSecurity
 public class DefaultSecurityConfig {
 	
-private CorsConfigurationSource corsConfigurationSource;
+	private CorsConfigurationSource corsConfigurationSource;
 	
     public DefaultSecurityConfig(CorsConfigurationSource corsConfigurationSource) {
 		this.corsConfigurationSource = corsConfigurationSource;
