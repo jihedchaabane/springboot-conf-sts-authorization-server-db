@@ -1,12 +1,22 @@
-/**
+/** 
 package com.chj.gr;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class EncryptPasswordsMain {
 	public static void main(String[] args) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println("" + encoder.encode("secret")); 	==> products-client
-		System.out.println("" + encoder.encode("secret1"));	==> client1
-		System.out.println("" + encoder.encode("secret2"));	==> client2
+		System.out.println("products-client:secret=>" + encoder.encode("secret")); 	//==> secret
+		System.out.println("client1:secret1=>" + encoder.encode("secret1"));		//==> secret1
+		System.out.println("client2:secret2=>" + encoder.encode("secret2"));		//==> secret2
+		
+		System.out.println("gr-ms1-resource:ms1-resource=>" + encoder.encode("ms1-resource"));			//==> ms1-resource
+		System.out.println("gr-ms2-resource:ms2-resource=>" + encoder.encode("ms2-resource"));			//==> ms2-resource
+		System.out.println("gr-ms3-resource:ms3-resource=>" + encoder.encode("ms3-resource"));			//==> ms3-resource
+		System.out.println("gr-resource-consumer-resttemplate:consumer-resttemplate=>" + encoder.encode("consumer-resttemplate"));			//==> consumer-resttemplate
+		System.out.println("gr-resource-consumer-webclient:consumer-webclient=>" + encoder.encode("gr-resource-consumer-webclient"));		//==> gr-resource-consumer-webclient
+		System.out.println("gr-resource-consumer-feign:consumer-feign=>" + encoder.encode("consumer-feign"));								//==> consumer-feign
+		
+		System.out.println("gr-oauth2-swagger-ms1:swagger-ms1=>" + encoder.encode("swagger-ms1"));		//==> swagger-ms1
+		System.out.println("gr-oauth2-swagger-ms2:swagger-ms2=>" + encoder.encode("swagger-ms2"));		//==> swagger-ms2
 	}
 }
 */
