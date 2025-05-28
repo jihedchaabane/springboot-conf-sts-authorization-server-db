@@ -60,7 +60,7 @@
 			<artifactId>spring-security-oauth2-authorization-server</artifactId>
 			<version>${spring-security-oauth2-authorization-server.version}</version>
 		</dependency>
-		<!-- AUTHORIZATION SERVER -->
+		<!-- PostgreSQL Driver -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
