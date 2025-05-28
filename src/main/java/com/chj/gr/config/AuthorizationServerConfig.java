@@ -81,7 +81,8 @@ public class AuthorizationServerConfig {
 //        configuration.setAllowedOrigins(Arrays.asList(
 //        		"http://localhost:8081", 	// swagger Authorize : gr-oauth2-swagger-ms1
 //        		"http://localhost:8082",	// swagger Authorize : gr-oauth2-swagger-ms2
-//        		"http://localhost:8765" 	// swagger Authorize : gr-conf-swagger-aggregator
+//        		etc ...
+//        		"http://localhost:8766" 	// swagger Authorize : gr-conf-swagger-aggregator
 //        ));
 //        configuration.setAllowCredentials(true);
         /** */
